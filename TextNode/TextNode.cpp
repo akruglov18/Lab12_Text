@@ -1,5 +1,8 @@
 #include "TextNode.h"
 
+TextNode* TextNode::firstFree = nullptr;
+vector<TextNode*> TextNode::textNodes;
+
 TextNode::TextNode(int _l, char _c)
 {
   next = nullptr;
@@ -118,6 +121,7 @@ void TextNode::setLevel(int _l)
     throw std::exception();
 }
 
+
 std::ostream& operator<<(std::ostream& out, const TextNode& node)
 {
   if (node.level == 3) {
@@ -132,4 +136,46 @@ std::ostream& operator<<(std::ostream& out, const TextNode& node)
       out << *(node.next);
   }
   return out;
+}
+
+void TextNode::initMem(int size)
+{
+  if (size <= 0)
+    throw std::exception();
+  TextNode* new_nodes = new TextNode[size];
+  for (int i = 1; i < size; i++) {
+    new_nodes[i - 1].next = &new_nodes[i];
+  }
+  textNodes.push_back(firstFree);
+  firstFree = new_nodes;
+}
+
+void TextNode::freeMem()
+{
+  for (int i = 0; i < textNodes.size(); i++) {
+    delete[] textNodes[i];
+  }
+  textNodes.clear();
+}
+
+void* TextNode::operator new(size_t size)
+{
+  if (firstFree == NULL)
+    initMem();
+
+  TextNode* node = firstFree;
+  firstFree = firstFree->next;
+  node->next = nullptr;
+  return node;
+}
+
+void TextNode::operator delete(void* p)
+{
+  TextNode* node = (TextNode*)p;
+
+  node->next = firstFree;
+  node->down = nullptr;
+  node->c = 0;
+  node->level = 3;
+  firstFree = node;
 }

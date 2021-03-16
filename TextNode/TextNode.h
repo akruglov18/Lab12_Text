@@ -2,10 +2,14 @@
 
 #include<iostream>
 #include "TStack.h"
+#include<vector>
 
 class TextNode 
 {
 protected:
+  static TextNode* firstFree;
+  static vector<TextNode*> textNodes;
+
   TextNode* next;
   TextNode* down;
   char c;
@@ -26,4 +30,10 @@ public:
   void setLevel(int _l);
 
   friend std::ostream& operator<<(std::ostream& stream, const TextNode& node);
+
+  static void initMem(int size = 2);
+  static void freeMem();
+
+  void* operator new (size_t size);
+  void operator delete (void*);
 };

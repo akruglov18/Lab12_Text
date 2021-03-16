@@ -1,5 +1,5 @@
 #include<gtest.h>
-#include<Text.h>
+#include"Text.h"
 
 TEST(Text, can_create_0) {
   ASSERT_NO_THROW(Text t());

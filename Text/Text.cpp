@@ -134,16 +134,17 @@ Text::Text(char* s) {
 
 Text::~Text()
 {
-  TStack<TextNode*> st;
-  st.push(root);
-  while (!st.isEmpty())
-  {
-    TextNode* str = st.get();
-    if (str->getNext() != nullptr)
-      st.push(str->getNext());
-    if (str->getDown() != nullptr)
-      st.push(str->getDown());
-  }
+  //TStack<TextNode*> st;
+  //st.push(root);
+  //while (!st.isEmpty())
+  //{
+  //  TextNode* str = st.get();
+  //  if (str->getNext() != nullptr)
+  //    st.push(str->getNext());
+  //  if (str->getDown() != nullptr)
+  //    st.push(str->getDown());
+  //}
+  TextNode::freeMem();
 }
 
 
