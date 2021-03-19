@@ -1,12 +1,13 @@
 language: cpp
 compiler:
-  - clang
+  - gcc
 before_script:
   - mkdir ../build
   - cd ../build
 script:
   - cmake ../Lab12_Text
   - make -j
+  - g++ main.cpp -std=c++17 -o LabTest
   - ./test/LabTest
 notifications:
   email: false
