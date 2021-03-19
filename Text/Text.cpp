@@ -66,7 +66,7 @@ bool TextIter::GoNextChar()
   }
   if (node->getLevel() == 3 && node->getNext() == NULL) {
     if (st.isEmpty()) {
-      throw std::exception("Stack is empty");
+      throw std::exception();
     }
     TextNode* prev= st.get();
     if (prev->getNext() != NULL) {
@@ -92,7 +92,7 @@ bool TextIter::IsEnd()
   }
   if (node->getLevel() == 3 && node->getNext() == NULL) {
     if (st.isEmpty()) {
-      throw std::exception("Stack is empty");
+      throw std::exception();
     }
     TextNode* prev = st.get();
     if (prev->getNext() != NULL) {
@@ -150,7 +150,8 @@ Text::~Text()
 
 TextIter Text::GetRoot()
 {
-  return TextIter(*this, root, TStack<TextNode*>(100));
+  TStack<TextNode*> s(100);
+  return TextIter(*this, root, s);
 }
 
 
