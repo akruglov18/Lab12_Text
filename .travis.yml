@@ -7,6 +7,6 @@ before_script:
 script:
   - cmake ../Lab12_Text
   - make -j
-  - ./test/LabTest
+  - ./LabTest/LabTest
 notifications:
   email: false
