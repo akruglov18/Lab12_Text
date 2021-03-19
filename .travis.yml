@@ -1,11 +1,11 @@
 language: cpp
 compiler:
-  - gcc
+  - MSVC
 before_script:
   - mkdir ../build
   - cd ../build
 script:
-  - g++ cmake ../Lab12_Text -std=c++17
+  - cmake ../Lab12_Text
   - make -j
   - ./test/LabTest
 notifications:
