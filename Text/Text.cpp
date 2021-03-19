@@ -60,16 +60,16 @@ bool TextIter::GoNextChar()
     node = node->getDown();
     return true;
   }
-  if (node->getLevel() == 3 && node->getNext() != nullptr) {
+  if (node->getLevel() == 3 && node->getNext() != NULL) {
     node = node->getNext();
     return true;
   }
-  if (node->getLevel() == 3 && node->getNext() == nullptr) {
+  if (node->getLevel() == 3 && node->getNext() == NULL) {
     if (st.isEmpty()) {
       throw std::exception("Stack is empty");
     }
     TextNode* prev= st.get();
-    if (prev->getNext() != nullptr) {
+    if (prev->getNext() != NULL) {
       st.push(prev->getNext());
       node = prev->getNext()->getDown();
       return true;
@@ -81,21 +81,21 @@ bool TextIter::GoNextChar()
 
 bool TextIter::IsEnd()
 {
-  if (node == nullptr) {
+  if (node == NULL) {
     return true;
   }
   if (node->getLevel() == 1 || node->getLevel() == 2) {
     return false;
   }
-  if (node->getLevel() == 3 && node->getNext() != nullptr) {
+  if (node->getLevel() == 3 && node->getNext() != NULL) {
     return false;
   }
-  if (node->getLevel() == 3 && node->getNext() == nullptr) {
+  if (node->getLevel() == 3 && node->getNext() == NULL) {
     if (st.isEmpty()) {
       throw std::exception("Stack is empty");
     }
     TextNode* prev = st.get();
-    if (prev->getNext() != nullptr) {
+    if (prev->getNext() != NULL) {
       return false;
     }
     return true;
@@ -282,10 +282,10 @@ void Text::Delete(int count, TextIter i)
       prev.GoNext();
     }
     if (prev.Get()->getNext() == i.Get()) {
-      prev.Get()->setNext(nullptr);
+      prev.Get()->setNext(NULL);
     }
     else {
-      prev.Get()->setDown(nullptr);
+      prev.Get()->setDown(NULL);
     }
   }
   // -------------------------------------------------------------

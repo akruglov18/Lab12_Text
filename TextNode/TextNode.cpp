@@ -1,20 +1,20 @@
 #include "TextNode.h"
 
-TextNode* TextNode::firstFree = nullptr;
+TextNode* TextNode::firstFree = NULL;
 vector<TextNode*> TextNode::textNodes;
 
 TextNode::TextNode(int _l, char _c)
 {
-  next = nullptr;
-  down = nullptr;
+  next = NULL;
+  down = NULL;
   c = _c;
   level = _l;
 }
 
 TextNode::TextNode(const TextNode& node)
 {
-  next = nullptr;
-  down = nullptr;
+  next = NULL;
+  down = NULL;
   c = node.c;
   level = node.level;
 }
@@ -24,7 +24,7 @@ TextNode::TextNode(char* s, int l)
   if (l < 1 || l > 3)
     throw std::exception();
   if (l == 1) {
-    next = nullptr;
+    next = NULL;
     c = 0;
     level = l;
     int sz = strlen(s);
@@ -44,15 +44,15 @@ TextNode::TextNode(char* s, int l)
             lcur->setNext(new TextNode(3, s[j]));
             lcur = lcur->getNext();
           }
-          lcur->setNext(nullptr);
+          lcur->setNext(NULL);
           start = i + 1;
         }
       }
-      wcur->setNext(nullptr);
+      wcur->setNext(NULL);
     }
   }
   if (l == 2) {
-    next = nullptr;
+    next = NULL;
     c = 0;
     level = l;
     int sz = strlen(s);
@@ -63,14 +63,14 @@ TextNode::TextNode(char* s, int l)
         lcur->setNext(new TextNode(3, s[i]));
         lcur = lcur->getNext();
       }
-      lcur->setNext(nullptr);
+      lcur->setNext(NULL);
     }
   }
   if (l == 3) {
     c = s[0];
     level = l;
-    next = nullptr;
-    down = nullptr;
+    next = NULL;
+    down = NULL;
   }
 }
 
@@ -126,13 +126,13 @@ std::ostream& operator<<(std::ostream& out, const TextNode& node)
 {
   if (node.level == 3) {
     out << node.c;
-    if (node.next != nullptr)
+    if (node.next != NULL)
       out << *(node.next);
   }
   else {
-    if (node.down != nullptr)
+    if (node.down != NULL)
       out << *(node.down);
-    if (node.next != nullptr)
+    if (node.next != NULL)
       out << *(node.next);
   }
   return out;
@@ -165,7 +165,7 @@ void* TextNode::operator new(size_t size)
 
   TextNode* node = firstFree;
   firstFree = firstFree->next;
-  node->next = nullptr;
+  node->next = NULL;
   return node;
 }
 
@@ -174,7 +174,7 @@ void TextNode::operator delete(void* p)
   TextNode* node = (TextNode*)p;
 
   node->next = firstFree;
-  node->down = nullptr;
+  node->down = NULL;
   node->c = 0;
   node->level = 3;
   firstFree = node;

@@ -32,7 +32,7 @@ public:
 
   friend std::ostream& operator<<(std::ostream& stream, const TextNode& node);
 
-  static void initMem(int size = 2);
+  static void initMem(int size = 100);
   static void freeMem();
 
   void* operator new (size_t size);

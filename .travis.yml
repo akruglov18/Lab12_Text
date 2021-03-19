@@ -1,6 +1,6 @@
 language: cpp
 compiler:
-  - MSVC
+  - gcc
 before_script:
   - mkdir ../build
   - cd ../build
