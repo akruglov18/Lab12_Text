@@ -5,9 +5,9 @@ before_script:
   - mkdir ../build
   - cd ../build
 script:
+  - g++ -std=c++17
   - cmake ../Lab12_Text
   - make -j
-  - g++ main.cpp -std=c++17 -o LabTest
   - ./test/LabTest
 notifications:
   email: false
