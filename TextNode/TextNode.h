@@ -3,6 +3,7 @@
 #include<iostream>
 #include "TStack.h"
 #include<vector>
+#include<string.h>
 
 class TextNode 
 {
