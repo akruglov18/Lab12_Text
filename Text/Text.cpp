@@ -151,9 +151,9 @@ Text::~Text()
 TextIter Text::GetRoot()
 {
   TStack<TextNode*> s(100);
-  return TextIter(*this, root, s);
+  TextIter it(*this, root, s);
+  return it;
 }
-
 
 TextIter Text::Find(char c)
 {
