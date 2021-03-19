@@ -13,7 +13,7 @@ protected:
 
 public:
   TextIter(Text& _text, TextNode* _node, TStack<TextNode*> _st);
-  TextIter(TextIter& t);
+  TextIter(const TextIter& t);
 
   bool GoNext();
   bool GoNextChar();

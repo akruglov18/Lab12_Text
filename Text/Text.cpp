@@ -5,7 +5,7 @@ TextIter::TextIter(Text& _text, TextNode* _node, TStack<TextNode*> _st) : text(_
   st = _st;
 }
 
-TextIter::TextIter(TextIter& t) : text(t.text)
+TextIter::TextIter(const TextIter& t) : text(t.text)
 {
   node = t.node;
   st = t.st;
