@@ -2,6 +2,8 @@
 
 #include "TextNode.h"
 #include <fstream>
+#include <iostream>
+#include <string>
 
 class Text;
 
@@ -43,4 +45,6 @@ public:
   char* Copy(int count, TextIter i); // копирует count букв с i
 
   friend std::ofstream& operator<<(std::ofstream& o, Text& t);
+  bool Save(const string& fileName) const;
+  bool Load(const string& fileName);
 };

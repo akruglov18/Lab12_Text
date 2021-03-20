@@ -348,6 +348,50 @@ char* Text::Copy(int count, TextIter i)
   return res;
 }
 
+bool Text::Save(const string& fileName) const
+{
+  ofstream fout(fileName);
+  if (fout.is_open()) {
+    fout << *root;
+    fout.close();
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
+bool Text::Load(const string& fileName)
+{
+  ifstream fin(fileName);
+  if (fin.is_open()) {
+    TextNode::freeMem();
+    TextNode* cur = NULL;
+    while (fin.eof()) {
+      string s;
+      getline(fin, s);
+      char* str = new char[s.size() + 1];
+      for (int i = 0; i < s.size(); i++)
+        str[i] = s[i];
+      str[s.size()] = '\0';
+      if (cur == NULL) {
+        root = new TextNode(str, 1);
+        cur = root;
+      }
+      else {
+        TextNode* add = new TextNode(str, 1);
+        cur->setNext(add);
+        cur = add;
+      }
+    }
+    fin.close();
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
 std::ofstream& operator<<(std::ofstream& out, Text& t)
 {
   out << *(t.root);
