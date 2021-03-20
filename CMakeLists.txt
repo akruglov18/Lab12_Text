@@ -7,7 +7,9 @@ if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Release)
 endif()
 
+add_subdirectory(StackLib)
 add_subdirectory(gtest)
 add_subdirectory(TextNode)
-add_subdirectory(test)
+add_subdirectory(Text)
+add_subdirectory(LabTest)
 

@@ -1,6 +1,5 @@
 language: cpp
 compiler:
-  - gcc
   - clang
 before_script:
   - mkdir ../build
@@ -8,6 +7,6 @@ before_script:
 script:
   - cmake ../Lab12_Text
   - make -j
-  - ./test/Tests
+  - ./LabTest/LabTest
 notifications:
   email: false
